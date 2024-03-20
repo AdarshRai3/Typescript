@@ -23,3 +23,91 @@ type calc = (a: string ,b:string)=>string;
 const stringcat : calc =(a,b)=>{
     return a+b;
 }
+// this is type aliasing concept in this we use the type keyword to define the types of the parameters of the function when there are number of parameters and then use the type in place of the parameter of the function we writing function in the above example.
+
+const arr:number[]=[12,34,23,54];
+const arr2:string[]=["Delhi","Agra","Jaipur"];
+const arr3:Array<boolean>=new Array(20);
+const arr4:Array<string>=[];
+const arr5:Array<number|string>=[];
+
+// these are all the valid syntaxes in which we can define an Array.
+//the arr3 syntax is highly useful in terms of similairity with the generic syntax
+//the arr5 syntax uses the union type by using this we can use two types of datatypes in the same array
+
+const tuple:[string,number]=["Delhi",23];
+//this is a tuple which is act as fixed size array and can contain elements of different types
+
+type objBody =
+    {
+        height : number,
+        weight : number,
+        gender? : boolean,
+    };
+const obj: objBody={
+    height : 180,
+    weight :75,
+    gender : true,
+}
+const obj2:objBody={
+    height : 160,
+    weight:60,
+}
+// so in the above example we have use type alising , we want to make some attributs of the object as optional than we can use syntax : gender?: 
+type FuncType = (a:number,b:number)=>void;
+interface objBody2 
+{
+    height : number,
+    weight : number,
+    gender? : boolean,
+}
+interface objBody3 extends objBody2{
+    country:string,
+    pincode:number,
+    func:FuncType,
+}
+const obj3:objBody3={
+    height : 180,
+    weight :75,
+    gender : true,
+    country:"india",
+    pincode:123456,
+    func:(a,b)=>{
+        console.log(a*b);
+    }
+}
+
+obj3.func(10,3);
+const obj4:objBody2={
+    height : 160,
+    weight:60,
+}
+
+// when it comes to generic and object we should focus on using interace because we can  use extends keyword and use attributes for other obj.
+// we use type for Functype and use that FuncType inside the interface objBody3 and then use it in the func attribute and after using that as an attribute of obj3 
+
+type MulType = (A:number, B:number,C?:number)=>number|string;
+
+// optional parameter
+const funct:MulType = (N,M,L)=>{
+    if(typeof L === "undefined"){
+        return "L is not Provided"
+    }
+    return N*M*L;
+
+};
+funct(10,30,32)
+//default paramter 
+const functi:MulType = (N,M,L=20)=>{
+    
+    return N*M*L;
+
+};
+functi(10,2);
+// now we are using type aliasing in the functions and also to remember in the function order of the parameters matter not the name need not to be the same ublike object in which have key in the place of paramenters , in which the order as well as the parameters need to be the same.
+
+//by using ? giving the type of the funtion we can easily call the function with optional parameters.
+// on using it in the function it will give error in the function to overcome that we use use conditional if with typeof L === "undefined" condition 
+
+
+//Rest parameter : we dont know how many parameter we need to pass in the function
