@@ -110,4 +110,78 @@ functi(10,2);
 // on using it in the function it will give error in the function to overcome that we use use conditional if with typeof L === "undefined" condition 
 
 
+
+type FunType = (...p: number[])=>number[];
+const fut:FunType = (...p)=>{
+    return p;
+};
+fut(25,15,10,12,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50);
+
 //Rest parameter : we dont know how many parameter we need to pass in the function
+
+type RsType = (q:number)=>number;
+const rs:RsType= function lol(q){
+    return 10;
+}
+
+const getData = (student:{
+    name:string,
+    age:number,
+    city:string,
+    class:string,
+    marks:number;
+}):void=>{
+    console.log(student);
+}
+
+// this is how we write function with object in Typescript but there is better way of writing this and that way is keep defining the obeject in the type and using it the function directly 
+
+type getDataType=(students:{
+    name:string,
+    age:number,
+    city:string,
+    class:string,
+    marks:number;
+})=>void;
+const getData1:getDataType = (students)=>{
+    console.log(students);
+}
+
+// another better way of doing this is by using interface in the place of the type because we can use extends interface keyword and use attributes for other obj.
+
+interface carInterface{
+    name:string,
+    readonly model:number;
+    color?:string;
+    
+}
+
+type carType = (car:carInterface)=>void;
+const car:carType = (car)=>{
+    console.log(car);
+}
+
+const CarOne:carInterface={
+    name:"BMW",
+    model:2022
+}
+
+car(CarOne);
+
+//in typescript if we fetch the data from the api we can directly see the field using car . and dont have to use console.log to see the products.
+
+const errorHandler = ()=>{
+    return new Error("Error Occured");
+}
+
+const errorHandler1 =():never=>{
+    throw new Error ();
+}
+
+// as you can see the difference in the above examples that when we throw error in the errorHandle the type becomes never but in the case we use return it will give the type as error 
+
+type thememode= "light" | "dark";
+
+const mode:thememode= "dark";
+
+// type in thememode can either be light or dark and other thing will throw an error in the console.
