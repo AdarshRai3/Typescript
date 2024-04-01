@@ -86,6 +86,8 @@ const obj4:objBody2={
 // when it comes to generic and object we should focus on using interace because we can  use extends keyword and use attributes for other obj.
 // we use type for Functype and use that FuncType inside the interface objBody3 and then use it in the func attribute and after using that as an attribute of obj3 
 
+
+//function 
 type MulType = (A:number, B:number,C?:number)=>number|string;
 
 // optional parameter
@@ -185,3 +187,80 @@ type thememode= "light" | "dark";
 const mode:thememode= "dark";
 
 // type in thememode can either be light or dark and other thing will throw an error in the console.
+
+//classes
+//public,private,protected and readonly are the access modifiers in typescript 
+//public is the default access modifier.it can use the attribute of the class in any part of the code.
+//private can access the arttribute of the class in the same class only
+//protected can access the attribute of the class in the same class and in the child class when we use extend keyword to extend the class in the child class
+//readonly can only access the attribute of the class that value cannot be changed 
+class Player{
+   constructor(
+     public  name:string,
+     public age:number,
+     public city:string,
+     private weight:number,
+     protected marks:number
+   ){}
+   getMyWeight=()=>this.weight;
+   //private can only be used in the same scope means inside the class
+}
+
+const Player1 = new Player("John",23,"Delhi",75,80);
+//we can give the attribute in the parameter in the same number the attribute in the class but the main problem is that we wont be able to access it beyond its access modifier scope 
+console.log(Player1.age);
+
+console.log(Player1.getMyWeight());
+//if we need weight than we can call to getMyWeight to access weight which is private in the construtor 
+
+class Hooker extends Player{
+    readonly id:string;
+    constructor(
+        private speed:number,
+        private height:number,
+        name:string,
+        age:number,
+        city:string
+    ){
+        super("John",23,"Delhi",75,80);
+        this .id= String(Math.random()*1000 );
+    }
+    getMyMarks=()=> this.marks;
+
+    get getMySpeed():number{
+           return this .speed;
+    }
+
+    set setMySpeed(val:number){
+        this.speed=val;
+    }
+}
+// In the above we have used extends that means the child component have the attribute of the parents as well as the attribute of the child components.
+ const Player3 = new Hooker(10,160,"John",23,"Delhi");
+     
+ console.log(Player3.getMySpeed);
+ Player3.setMySpeed=20;
+ console.log(Player3.getMySpeed);
+// by using getter and settter function in the class we can directly access the height and set the marks 
+//setter function dont return anything and always take at least one parameter.
+
+interface ProjectType{
+    nameP:string,
+    time: number;
+    budget:number;
+}
+
+interface GiveId{
+    giveId:()=>string;
+}
+
+class Proj implements ProjectType,GiveId{
+    constructor(
+        public nameP:string,
+        public time: number,
+        public budget:number
+    ){}
+    giveId=()=>String(Math.random()*1000);
+}
+ 
+const Project1 = new Proj("John",23,75);
