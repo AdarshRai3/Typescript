@@ -264,3 +264,9 @@ class Proj implements ProjectType,GiveId{
 }
  
 const Project1 = new Proj("John",23,75);
+
+//typeAssertion and Dom Manipulation
+const btnA = document.getElementById("btnA")as HTMLElement;
+// const btnA = <HTMLElement> document.getElementById("btnA");
+// const btnA = document.getElementById("btnA")!
+btnA.onclick;
