@@ -148,3 +148,5 @@ const btnA = document.getElementById("btnA");
 // const btnA = <HTMLElement> document.getElementById("btnA");
 // const btnA = document.getElementById("btnA")!
 btnA.onclick;
+const myImg = document.getElementById("myImg");
+myImg.src;
