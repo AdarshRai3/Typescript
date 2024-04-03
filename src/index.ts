@@ -274,3 +274,19 @@ btnA.onclick;
 const myImg = document.getElementById("myImg") as HTMLImageElement;
 
 myImg.src;
+
+const form= document.querySelector("myform") as HTMLFormElement;
+const myinput = document.querySelector("form>input") as HTMLInputElement;
+form.onsubmit = (e:SubmitEvent)=> {
+      e.preventDefault();
+      const value = Number(myinput.value);
+      console.log(value);
+
+      const h3 = document.createElement("h3") as HTMLHeadingElement;
+
+      h3.textContent = String(20+value);
+
+      const body = document.querySelector("body") as HTMLBodyElement;
+
+      body.append(h3);
+}

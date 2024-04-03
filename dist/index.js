@@ -150,3 +150,14 @@ const btnA = document.getElementById("btnA");
 btnA.onclick;
 const myImg = document.getElementById("myImg");
 myImg.src;
+const form = document.querySelector("myform");
+const myinput = document.querySelector("form>input");
+form.onsubmit = (e) => {
+    e.preventDefault();
+    const value = Number(myinput.value);
+    console.log(value);
+    const h3 = document.createElement("h3");
+    h3.textContent = String(20 + value);
+    const body = document.querySelector("body");
+    body.append(h3);
+};
