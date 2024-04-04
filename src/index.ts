@@ -264,12 +264,11 @@ class Proj implements ProjectType,GiveId{
 }
  
 const Project1 = new Proj("John",23,75);
-
 //typeAssertion and Dom Manipulation
-const btnA = document.getElementById("btnA")as HTMLElement;
+const btnA = document.getElementById("btnA")as HTMLButtonElement;
 // const btnA = <HTMLElement> document.getElementById("btnA");
 // const btnA = document.getElementById("btnA")!
-btnA.onclick;
+// btnA.onclick;
 
 const myImg = document.getElementById("myImg") as HTMLImageElement;
 
@@ -337,3 +336,148 @@ myobj[key as keyof Emp] // now here are using the key type assertion with keyof 
 myobj[key as keyof typeof myobj];
 
 //utility classes
+
+//Partial classes
+//Partial<User>
+//properties of the user becomes optional
+type User = {
+    nameUser:string,
+    emailUser:string
+}
+
+type User2 = Partial<User>;
+
+//Required classes
+//Required<User>
+//properties of the user becomes mandatory
+//opposite of partial
+// type User = {
+//     nameUser?:string,
+//     emailUser?:string
+// }
+
+type User3 = Required<User>
+// const user: Required<User>={
+//     nameUser:"Ad",
+//     emailUser:"Ad@gmail.com"
+// }
+
+// const user: Required<User>={
+//     nameUser:"Ad",
+//     emailUser:"Ad@gmail.com"
+// }
+
+//ReadOnly classes
+// the properties of the user cannot be changed 
+type User4=Readonly<User>
+
+// const user: Readonly<User>={
+//     nameUser : "Abhi",
+//     emailUser:"abhi@xyz.com"
+// }
+
+//Record<Keys,User>
+
+type User5=Record<"nameUser"|"emailUser",string>
+
+interface UserInfo {
+    userAge:number;
+}
+
+type Usernames= "john"|"levi"|"elon";
+
+const user:Record<Usernames,UserInfo>={
+    john:{userAge:20},
+    levi:{userAge:21},
+    elon:{userAge:53},
+}
+
+//Pick Classes
+//Pick<Types,Keys>
+interface OrderInfo{
+    readonly id : string
+    username:string,
+    city:string,
+    state:string,
+    country:string,
+    status:string,
+}
+
+type ShippingInfo = Pick<OrderInfo,"city"|"state"|"country">
+
+//Omit Class 
+//Omit<Types,Keys>
+//opposite 
+type PersonalInfo=Omit<OrderInfo, "city"|"country"|"state"|"status">
+
+//Exclude<Type,ExcludeUnion>
+//exclude will help us to remove the type 
+
+type MyUnion = number|string|boolean;
+
+type Random = Exclude<MyUnion,boolean>
+
+//Extract<Type,Union>
+// this will help us to select the type from the union
+type Random2 = Extract<MyUnion,number>
+
+
+//NonNullable<Type>
+//this will remove null and undefined from the type 
+
+type Random3 = NonNullable<MyUnion>
+
+//Parameters<Type>
+//this will help us to extract parameters from the function
+// dont forget use typeof with functionName
+const myaddfunc =(a:number,b:number)=>{
+    return a+b;
+}
+
+type Random4= Parameters<typeof myaddfunc>;
+
+//constructorparameters
+//ConstructorParameters<Type>
+//this will helps us to extract constructor parameters
+class SimpleClass{
+    constructor(public st:string, public ts:string ){}
+}
+type Random5= ConstructorParameters<typeof SimpleClass>
+
+//ReturnType<Type> 
+//this will give us the return type of the function 
+
+type FunctionType= ReturnType<typeof myaddfunc> 
+
+//InstanceType<Type>
+//this will work same as constructor parameter function
+
+type Random6 = InstanceType<typeof SimpleClass>
+
+const useless:Random6 ={
+    st:"45",
+    ts:"100",
+}
+
+//Generic Type
+//const function=<CustomType>(n:CustomType)=>{return n}
+//There are many use of generic type
+//Like Generic Type dont have the type we can decide it type of our own  
+
+type People = {
+    namePeople:string,
+    agePeople:number,
+}
+const functionsType=<T>(n:T):T=>{
+    return n;
+}
+
+const myPeople:People= {
+    namePeople:"Ads",
+    agePeople:45
+}
+
+const answer = functionsType<People>(myPeople);
+answer.agePeople;
+answer.namePeople;
+

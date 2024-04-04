@@ -147,7 +147,7 @@ const Project1 = new Proj("John", 23, 75);
 const btnA = document.getElementById("btnA");
 // const btnA = <HTMLElement> document.getElementById("btnA");
 // const btnA = document.getElementById("btnA")!
-btnA.onclick;
+// btnA.onclick;
 const myImg = document.getElementById("myImg");
 myImg.src;
 const form = document.querySelector("#myform");
@@ -187,4 +187,37 @@ let key = "nameId";
 myobj[key]; // now here are using the key type assertion with keyof operator to get the key of the interface
 //sometime we dont have access to interface the also we can access the key using the type of operator in combination with keyof operator to access the key of the interface;
 myobj[key];
-//utility classes
+const user = {
+    john: { userAge: 20 },
+    levi: { userAge: 21 },
+    elon: { userAge: 53 },
+};
+//Parameters<Type>
+//this will help us to extract parameters from the function
+// dont forget use typeof with functionName
+const myaddfunc = (a, b) => {
+    return a + b;
+};
+//constructorparameters
+//ConstructorParameters<Type>
+//this will helps us to extract constructor parameters
+class SimpleClass {
+    constructor(st, ts) {
+        this.st = st;
+        this.ts = ts;
+    }
+}
+const useless = {
+    st: "45",
+    ts: "100",
+};
+const functionsType = (n) => {
+    return n;
+};
+const myPeople = {
+    namePeople: "Ads",
+    agePeople: 45
+};
+const answer = functionsType(myPeople);
+answer.agePeople;
+answer.namePeople;
