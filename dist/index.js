@@ -150,7 +150,7 @@ const btnA = document.getElementById("btnA");
 btnA.onclick;
 const myImg = document.getElementById("myImg");
 myImg.src;
-const form = document.querySelector("myform");
+const form = document.querySelector("#myform");
 const myinput = document.querySelector("form>input");
 form.onsubmit = (e) => {
     e.preventDefault();
@@ -161,3 +161,30 @@ form.onsubmit = (e) => {
     const body = document.querySelector("body");
     body.append(h3);
 };
+// interface Emp {
+//    [key:string]:string;
+// }
+//this is the solution using dynamic key with operators
+const myobj = {
+    nameId: "Abhi",
+    emailID: "abhi@xyz.com"
+};
+console.log(myobj.nameId);
+const getName = () => {
+    return myobj.nameId;
+};
+const getEmail = () => {
+    return myobj.emailID;
+};
+// const getdata =(key:string):string=>{
+//      return myobj[key];
+// }
+//this will work as solution 
+// but problem is sometime we dont have access to interface in that case we have to look at different solution using 
+//"key of operator 
+// const key = "nameId";this will work when key is const but not when key is let
+let key = "nameId";
+myobj[key]; // now here are using the key type assertion with keyof operator to get the key of the interface
+//sometime we dont have access to interface the also we can access the key using the type of operator in combination with keyof operator to access the key of the interface;
+myobj[key];
+//utility classes

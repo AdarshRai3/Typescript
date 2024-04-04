@@ -275,7 +275,7 @@ const myImg = document.getElementById("myImg") as HTMLImageElement;
 
 myImg.src;
 
-const form= document.querySelector("myform") as HTMLFormElement;
+const form= document.querySelector("#myform") as HTMLFormElement;
 const myinput = document.querySelector("form>input") as HTMLInputElement;
 form.onsubmit = (e:SubmitEvent)=> {
       e.preventDefault();
@@ -290,3 +290,50 @@ form.onsubmit = (e:SubmitEvent)=> {
 
       body.append(h3);
 }
+//----------------------------------------------//
+//here we have make an interface Emp{emailID:string , nameID:string} them make an const myobhj:Emp ={nameID:"sfe",emailId:"sfe@xyz.com"} now  the problem is I want to access both nameID and emailID with so we make a seperate getName=()=> { return myobj.nameId;} and getEmail=()=>{ return my.obj.emailId} but the main problem is instead of writing two seperate function for the name and email we want to do it with single function using const getData=(key)=>{ return myobj[key]}but it is giving the error , there are two ways to solve this problem : 
+//The first solution is index signatue in which we pass making the key dynamic with operator and second solution is creating the index signatue
+
+interface Emp {
+    nameId:string;
+    emailID:string;
+}
+
+// interface Emp {
+//    [key:string]:string;
+// }
+//this is the solution using dynamic key with operators
+const myobj: Emp ={
+    nameId:"Abhi",
+    emailID:"abhi@xyz.com"
+};
+
+console.log(myobj.nameId);
+
+const getName = ():string => {
+    return myobj.nameId;
+}
+
+const getEmail= ():string=> {
+    return myobj.emailID;
+}
+
+// const getdata =(key:string):string=>{
+//      return myobj[key];
+// }
+//this will work as solution 
+ 
+// but problem is sometime we dont have access to interface in that case we have to look at different solution using 
+//"key of operator 
+
+// const key = "nameId";this will work when key is const but not when key is let
+
+let key = "nameId";
+
+myobj[key as keyof Emp] // now here are using the key type assertion with keyof operator to get the key of the interface
+
+//sometime we dont have access to interface the also we can access the key using the type of operator in combination with keyof operator to access the key of the interface;
+
+myobj[key as keyof typeof myobj];
+
+//utility classes
